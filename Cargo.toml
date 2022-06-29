@@ -1,0 +1,8 @@
+[package]
+name = "service_fn"
+version = "0.1.0"
+edition = "2021"
+description = "a fork of https://docs.rs/tower/0.4.12/src/tower/util/service_fn.rs.html that supports passing in a configuration" 
+
+[dependencies]
+tower-service = "0.3.2" # match lambda_runtime
