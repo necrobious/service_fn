@@ -1,3 +1,3 @@
-pub mod service;
-pub use service::*;
+pub mod service_fn;
+pub use service_fn::*;
 
