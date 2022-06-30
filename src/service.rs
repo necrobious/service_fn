@@ -3,11 +3,18 @@ use std::future::Future;
 use std::task::{Context, Poll};
 use tower_service::Service;
 
+/// A fork of Tower's service_fn
+/// see: https://github.com/tower-rs/tower/blob/master/tower/src/util/service_fn.rs
+///
+/// Forked to add a service config option that is Clone'd per request, facilitating easy passing of
+/// main() initialized value to each request, namily AWS SDK clients. Both Smithy and Hyper clients
+/// recommend Clone as the prefered way to share their Clients over multiple requests, others
+/// havent been tested.
+///
 pub fn service_fn<C,T>(cfg: C, func: T) -> ServiceFn<C,T> {
     ServiceFn { cfg, func }
 }
 
-//#[derive(Copy, Clone)]
 #[derive(Clone)]
 pub struct ServiceFn<C,T> {
     cfg: C,
